@@ -4,9 +4,11 @@
   class MealItem extends StatelessWidget {
     const MealItem({
       super.key,
-      required this.meal});
+      required this.meal,
+    required this.OnSelect});
 
     final Meal meal ;
+    final void Function(Meal meal ) OnSelect ;
 
     String get ComplexityText {
       switch (meal.complexity) {
@@ -50,6 +52,7 @@
           clipBehavior: Clip.hardEdge,
          elevation :2 ,
         child: InkWell(
+          onTap : ()=> OnSelect(meal),
           child: Column(
             children: [ Stack(
 
@@ -57,7 +60,9 @@
              // if you have a image url from the internt and u want to display it use image.network
 
              FadeInImage(
-                 placeholder: MemoryImage(kTransparentImage), image: NetworkImage(meal.imageUrl),
+                 placeholder: MemoryImage(kTransparentImage), image: NetworkImage(
+                 meal.imageUrl ,
+             ),
 
              ),
              Positioned(
