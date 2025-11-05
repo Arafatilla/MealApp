@@ -9,7 +9,8 @@
   class CategoryGridItem extends StatelessWidget {
 
     final category cat ;
-    const CategoryGridItem({super.key , required this.cat});
+    final void Function(Meal meal) ToggleFavorite  ;
+    const CategoryGridItem({super.key , required this.cat, required this.ToggleFavorite});
 
 
     @override
@@ -22,7 +23,7 @@
          Navigator.push ( context ,
              MaterialPageRoute(builder: (ctx)=>  Mealsscreen(
                title : cat.title,
-               meals : Filteredmeal,
+               meals : Filteredmeal, ToggleFavorite: ToggleFavorite,
              ),
              )
          );

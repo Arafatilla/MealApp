@@ -59,6 +59,8 @@ final  List<category> availableCategories = [
   ),
 ];
 
+
+// Dummy data for meals
 final List<Meal> dummyMeals = [
   Meal(
     id: 'm1',

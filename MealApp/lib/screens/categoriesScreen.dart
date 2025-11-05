@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:responsive_1/widgets/category_grid_item.dart';
 
 import '../Data/dummy_data.dart';
+import '../models/meal.dart';
 
 
 class Categoriesscreen extends StatelessWidget {
-  const Categoriesscreen({super.key});
+
+  final void Function(Meal meal) ToggleFavorite  ;
+  const Categoriesscreen({super.key, required this.ToggleFavorite});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class Categoriesscreen extends StatelessWidget {
         //in flutter the loop does not have {} ?
         for (final category in availableCategories)
         CategoryGridItem(
-            cat:category,
+            cat:category, ToggleFavorite: ToggleFavorite,
         ),
       ],),
     );
