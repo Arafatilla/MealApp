@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_1/screens/Filter_screen.dart';
 import 'package:responsive_1/screens/mealsScreen.dart';
+import 'package:responsive_1/widgets/main_drawer.dart';
 
 import '../models/meal.dart';
 import 'categoriesScreen.dart';
@@ -24,6 +26,22 @@ class _TabsScreenState extends State<TabsScreen> {
       ),
     );
     }
+
+    // Function to control drawer icons 
+    void _SetScreen(String identifier){
+     
+     // first we pop the drawer 
+     Navigator.of(context).pop();
+     // then if this condition is right we go to filterScreen then when we comeback we comeBack directly to the previous screen which is  MealsScreen
+     if(identifier == 'filters'){
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (ctx) => const FiltersScreen(),
+        ),
+      );
+     }
+
+    } 
 
   // Function to manage the toggling between adding meal to favorites or remove it when clicking on the star button
   void _ToggleFavorite(Meal meal) {
@@ -67,7 +85,10 @@ class _TabsScreenState extends State<TabsScreen> {
     return Scaffold(
       appBar: AppBar(title: Text("..")),
       body: SelectedPage,
-      bottomNavigationBar: BottomNavigationBar(
+      drawer: MainDrawer(
+        OnSelectScreen:_SetScreen,
+        ),  
+      bottomNavigationBar: BottomNavigationBar( 
         onTap: _PageIndex,
         currentIndex: _SlectedPageIndex,
         items: [
