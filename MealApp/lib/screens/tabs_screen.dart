@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_1/screens/Filter_screen.dart';
+import 'package:responsive_1/screens/Filters_screen.dart';
 import 'package:responsive_1/screens/mealsScreen.dart';
 import 'package:responsive_1/widgets/main_drawer.dart';
 
