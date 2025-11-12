@@ -10,8 +10,8 @@
 
     final category cat ;
     final void Function(Meal meal) ToggleFavorite  ;
-    const CategoryGridItem({super.key , required this.cat, required this.ToggleFavorite});
-
+    CategoryGridItem({super.key , required this.cat, required this.ToggleFavorite , required this.availableMeals});
+  final List<Meal> availableMeals;
 
     @override
     Widget build(BuildContext context) {
@@ -19,7 +19,7 @@
       return InkWell(
         onTap: (){
           //  since it's in the onTap function so when the user click on a cat form the dummymeals filter just the elements who has the cat.id equal to the clicked category
-          final List<Meal> Filteredmeal = dummyMeals.where((element) => element.categories.contains(cat.id)).toList();
+          final List<Meal> Filteredmeal = availableMeals.where((element) => element.categories.contains(cat.id)).toList();
          Navigator.push ( context ,
              MaterialPageRoute(builder: (ctx)=>  Mealsscreen(
                title : cat.title,

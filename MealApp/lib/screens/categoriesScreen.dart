@@ -8,7 +8,8 @@ import '../models/meal.dart';
 class Categoriesscreen extends StatelessWidget {
 
   final void Function(Meal meal) ToggleFavorite  ;
-  const Categoriesscreen({super.key, required this.ToggleFavorite});
+  const Categoriesscreen({super.key, required this.ToggleFavorite, required this.availableMeals});
+  final List<Meal> availableMeals;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class Categoriesscreen extends StatelessWidget {
         //in flutter the loop does not have {} ?
         for (final category in availableCategories)
         CategoryGridItem(
-            cat:category, ToggleFavorite: ToggleFavorite,
+            cat:category, ToggleFavorite: ToggleFavorite, availableMeals: availableMeals,
         ),
       ],),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_1/Data/dummy_data.dart';
 import 'package:responsive_1/screens/Filters_screen.dart';
 import 'package:responsive_1/screens/mealsScreen.dart';
 import 'package:responsive_1/widgets/main_drawer.dart';
@@ -6,6 +7,13 @@ import 'package:responsive_1/widgets/main_drawer.dart';
 import '../models/meal.dart';
 import 'categoriesScreen.dart';
 
+
+const kIntialFilters = {
+  Filter.GlutenFree : false,
+  Filter.LactoseFree : false,
+  Filter.Vegan : false,
+  Filter.Vegetarian : false
+};
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
 
@@ -16,7 +24,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _SlectedPageIndex = 0;
   final List<Meal> _FavoriteMeals = [];
-
+  Map<Filter, bool> SelectedFilters = kIntialFilters ;
   // snackBar to show message when adding a meal to favorites or removing it
     void ShowInfoMessage(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -31,14 +39,20 @@ class _TabsScreenState extends State<TabsScreen> {
     void _SetScreen(String identifier){
      
      // first we pop the drawer 
-     Navigator.of(context).pop();
      // then if this condition is right we go to filterScreen then when we comeback we comeBack directly to the previous screen which is  MealsScreen
      if(identifier == 'filters'){
-      Navigator.of(context).pushReplacement(
+     Navigator.of(context).pop();
+      Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (ctx) => const FiltersScreen(),
+          builder: (ctx) => FiltersScreen(
+            currentState : SelectedFilters, 
+          ),
         ),
+      ).then((value) => setState(() => SelectedFilters = value??  kIntialFilters),
+        
       );
+      
+  
      }
 
     } 
@@ -71,7 +85,29 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Widget SelectedPage = Categoriesscreen(ToggleFavorite: _ToggleFavorite);
+
+     final List<Meal> availableMeals = dummyMeals.where((element) {
+
+        if(SelectedFilters[Filter.GlutenFree]! && !element.isGlutenFree){
+          return false ;
+        }
+         if(SelectedFilters[Filter.LactoseFree]! && !element.isLactoseFree){
+          return false ;
+        }
+         if(SelectedFilters[Filter.Vegan]! && !element.isVegan){
+          return false ;
+        }
+         if(SelectedFilters[Filter.Vegetarian]! && !element.isVegetarian){
+          return false ;
+        }
+
+  return true;
+    }).toList();
+    
+    Widget SelectedPage = Categoriesscreen(
+      ToggleFavorite: _ToggleFavorite, 
+      availableMeals:availableMeals,);
+
 
     var selectedpageTitle = "cat";
 
