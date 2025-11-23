@@ -6,28 +6,29 @@ This project demonstrates navigation, widget composition, data modeling, and the
 ---
 
 ## 📂 Project Structure
+
+```text
 lib/
 ├── Data/
-│ └── dummy_data.dart #Contains all static/dummy data used across the app
+│   └── dummy_data.dart          # Contains all static/dummy data used across the app
 │
 ├── models/
-│ ├── category.dart # Category model
-│ └── meal.dart # Meal model
+│   ├── category.dart            # Category model
+│   └── meal.dart                # Meal model
 │
 ├── screens/
-│ ├── categoriesScreen.dart # Displays all categories
-│ ├── Filters_screen.dart # Filters logic (gluten-free, vegan, etc.)
-│ ├── meal_detail_screen.dart # Shows detailed meal information
-│ ├── mealsScreen.dart # Displays meals from a selected category
-│ └── tabs_screen.dart # Main tab navigation between screens
+│   ├── categoriesScreen.dart    # Displays all categories
+│   ├── Filters_screen.dart      # Filters logic (gluten-free, vegan, etc.)
+│   ├── meal_detail_screen.dart  # Shows detailed meal information
+│   ├── mealsScreen.dart         # Displays meals from a selected category
+│   └── tabs_screen.dart         # Main tab navigation between screens
 │
 ├── widgets/
-│ ├── category_grid_item.dart # Widget for the category card in the grid
-│ ├── main_drawer.dart # App drawer with navigation
-│ └── meal_item.dart # Single meal card widget
+│   ├── category_grid_item.dart  # Widget for the category card in the grid
+│   ├── main_drawer.dart         # App drawer with navigation
+│   └── meal_item.dart           # Single meal card widget
 │
-└── main.dart # App entry point
----
+└── main.dart                    # App entry point
 
 ## 🧠 State Management
 
