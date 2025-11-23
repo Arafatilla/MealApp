@@ -8,7 +8,7 @@ This project demonstrates navigation, widget composition, data modeling, and the
 ## 📂 Project Structure
 lib/
 ├── Data/
-│ └── dummy_data.dart # Contains all static/dummy data used across the app
+│ └── dummy_data.dart #Contains all static/dummy data used across the app
 │
 ├── models/
 │ ├── category.dart # Category model
